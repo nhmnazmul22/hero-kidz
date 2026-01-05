@@ -16,3 +16,16 @@
   --color-success: oklch(70% 0.17 145);
   --color-error: oklch(62% 0.24 28);
 }
+
+/* Custom utility ONLY */
+@layer utilities {
+  .font-poppins {
+    font-family: var(--font-poppins), sans-serif;
+  }
+  .font-bangla {
+    font-family: var(--font-mayaboti), sans-serif;
+  }
+  .font-onek {
+    font-family: var(--font-onek), sans-serif;
+  }
+}

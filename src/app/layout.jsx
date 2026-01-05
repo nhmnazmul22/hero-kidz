@@ -1,10 +1,24 @@
-import { Poppins } from "next/font/google";
+import { Anek_Bangla, Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "800"],
+export const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+});
+
+export const mayaboti = localFont({
+  src: "./fonts/mayaboti-normal.ttf",
+  variable: "--font-mayaboti",
+});
+
+export const onekBangla = Anek_Bangla({
+  subsets: ["bengali"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-onek",
 });
 
 export const metadata = {
@@ -15,9 +29,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased`}>
+      <body
+        className={`${poppins.variable} ${mayaboti.variable} ${onekBangla.variable} font-onek antialiased`}
+      >
         <Navbar />
-        <main>{children}</main>
+        <main className="container mx-auto min-h-[calc(100vh-287px)]">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
