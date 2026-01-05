@@ -7,6 +7,7 @@ export const navLinks = [
 
 export const toys = [
   {
+    slug: "number-and-counting-learning-board",
     title: "Number and Counting Learning Board",
     bangla: "সংখ্যা ও গণনা শেখার শিক্ষামূলক বোর্ড",
     image: "https://i.ibb.co.com/p6Q0fchX/81a72-DDFc-KL-AC-SL1500.jpg",
@@ -39,6 +40,7 @@ export const toys = [
   },
 
   {
+    slug: "animal-and-nature-learning-flash-cards",
     title: "Animal and Nature Learning Flash Cards",
     bangla: "প্রাণী ও প্রকৃতি শেখার ফ্ল্যাশ কার্ড সেট",
     image: "https://i.ibb.co.com/QFDWpCf4/s-l1600.webp",
@@ -70,6 +72,7 @@ export const toys = [
   },
 
   {
+    slug: "fun-logic-matching-cube-game",
     title: "Fun Logic Matching Cube Game",
     bangla: "মজার লজিক ম্যাচিং কিউব গেম",
     image: "https://i.ibb.co.com/3mMvjKnV/71k8-US2-Ls3-L-SL1500.jpg",
@@ -102,10 +105,10 @@ export const toys = [
   },
 
   {
+    slug: "creative-story-builder-picture-cards",
     title: "Creative Story Builder Picture Cards",
     bangla: "মজার গল্প বানানোর পিকচার কার্ড সেট",
     image: "https://i.ibb.co.com/RGMWJdwt/71zppz-Gon-RL-AC-SX679.jpg",
-
     price: 1050,
     discount: 9,
     sizes: [],
@@ -134,10 +137,10 @@ export const toys = [
   },
 
   {
+    slug: "kids-graduation-hat-with-costume",
     title: "Kids Graduation Hat with Costume",
     bangla: "শিশুদের গ্র্যাজুয়েশন হ্যাট ( কস্টিউম সহ )",
     image: "https://i.ibb.co.com/vxMYHV6V/image.png",
-    youtube: "https://www.youtube.com/watch?v=kids-graduation-hat-demo",
     price: 650,
     discount: 5,
     sizes: [],
@@ -166,15 +169,14 @@ export const toys = [
   },
 
   {
+    slug: "superman-costume-for-kids",
     title: "Superman Costume for Kids",
     bangla: "শিশুদের সুপারম্যান পোশাক",
     image: "https://i.ibb.co.com/1tNhx5Ct/81-Vy-ni-Yxs-L-AC-SX679.jpg",
-
     price: 1350,
     discount: 10,
     sizes: [],
     color: [],
-
     description:
       "Superman Costume শিশুদের imaginative play এবং role-playing এর জন্য perfect।\n\nএই costume set এ superhero outfit, cape এবং emblem রয়েছে, যা বাচ্চাদের superhero identity অনুভব করায়। Playful design এবং bright color শিশুদের excitement বাড়ায়। Birthday party, Halloween বা fancy dress competition-এ এটি ideal।\n\nComfortable fabric দিয়ে তৈরি হওয়ায় শিশু সহজে খেলতে পারে এবং move করতে পারে। Non-toxic material এবং safe stitching থাকায় এটি child-friendly। Parents চাইলে fun storytelling বা superhero games এ এই outfit ব্যবহার করতে পারেন।",
     qna: [
@@ -200,6 +202,7 @@ export const toys = [
   },
 
   {
+    slug: "doctor-costume-set-for-kids",
     title: "Doctor Costume Set for Kids",
     bangla: "শিশুদের ডাক্তার পোশাক সেট",
     image: "https://i.ibb.co.com/203h05Sq/image.png",
@@ -233,11 +236,12 @@ export const toys = [
   },
 
   {
+    slug: "kids-engineering-tools-set",
     title: "Kids Engineering Tools Set",
     bangla: "শিশুদের ইঞ্জিনিয়ারিং টুলস সেট",
     image: "https://i.ibb.co.com/W4L8SFbK/image.png",
     price: 1350,
-    percentage: 10,
+    discount: 10,
     sizes: [],
     color: [],
     description:
@@ -264,3 +268,4 @@ export const toys = [
     ],
   },
 ];
+

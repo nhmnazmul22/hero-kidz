@@ -1,16 +1,15 @@
+import React from "react";
 import Section from "@/components/common/Section";
-import Banner from "@/components/home/Banner";
 import Products from "@/components/product/Products";
 
-export default function Home() {
+const ProductsPage = () => {
   return (
     <>
-      <Section>
-        <Banner />
-      </Section>
       <Section>
         <Products />
       </Section>
     </>
   );
-}
+};
+
+export default ProductsPage;

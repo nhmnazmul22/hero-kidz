@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
-  const { bangla, image, price, discount, ratings, sold } = product;
+  const { bangla, image, price, discount, ratings, sold, slug } = product;
 
   const discountedPrice = discount
     ? Math.round(price - (price * discount) / 100)
@@ -39,8 +40,13 @@ const ProductCard = ({ product }) => {
             </span>
           )}
         </div>
-        <div className="card-actions mt-4">
-          <button className="btn btn-primary btn-sm w-full">
+        <div className="card-actions mt-4 gap-2 items-center">
+          <Link href={`/products/${slug}`}>
+            <button className="btn btn-outline btn-primary btn-sm flex-1">
+              ডিটেলস দেখুন
+            </button>
+          </Link>
+          <button className="btn btn-primary btn-sm flex-1">
             কার্টে যোগ করুন
           </button>
         </div>
