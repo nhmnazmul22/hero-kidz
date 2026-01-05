@@ -11,7 +11,7 @@ export const poppins = Poppins({
 });
 
 export const mayaboti = localFont({
-  src: "./fonts/mayaboti-normal.ttf",
+  src: "./_fonts/mayaboti-normal.ttf",
   variable: "--font-mayaboti",
 });
 
