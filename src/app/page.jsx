@@ -1,10 +1,16 @@
-import Banner from "@/components/Home/Banner";
-import Image from "next/image";
+import Section from "@/components/common/Section";
+import Banner from "@/components/home/Banner";
+import Products from "@/components/home/Products";
 
 export default function Home() {
   return (
     <>
-      <Banner />
+      <Section>
+        <Banner />
+      </Section>
+      <Section>
+        <Products />
+      </Section>
     </>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <header className="py-10">
+    <div>
       <div className="flex max-md:flex-col justify-between items-center gap-5 flex-wrap">
         <div className="flex-1 max-md:order-2 max-sm:text-center ">
           <p className="badge badge-primary">
@@ -12,7 +12,7 @@ const Banner = () => {
           <h2
             className={`font-bangla text-5xl lg:text-6xl xl:text-7xl font-bold leading-16 lg:leading-20`}
           >
-            আপনার শিশুর জন্য দিন <br className="max-sm:hidden"/>
+            আপনার শিশুর জন্য দিন <br className="max-sm:hidden" />
             <span className="text-primary">খেলার সাথে শেখার আনন্দ</span>
           </h2>
 
@@ -26,7 +26,7 @@ const Banner = () => {
             খেলনা দেখুন
           </button>
         </div>
-        <div className="flex-1  max-md:order-1 flex justify-center items-center">
+        <div className="flex-1 max-md:order-1 flex justify-center md:justify-end items-center">
           <Image
             src="/assets/hero.png"
             alt="Hero banner"
@@ -35,7 +35,7 @@ const Banner = () => {
           />
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 
