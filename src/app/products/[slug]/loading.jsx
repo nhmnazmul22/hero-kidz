@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductDetailLoading = () => {
   return (
-    <div className="container mx-auto py-10 animate-pulse">
+    <div className="main-container mx-auto py-10 animate-pulse">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Image */}
         <div className="h-105 bg-base-200 rounded-xl" />

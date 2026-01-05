@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import { toys } from "@/constants";
 import { BiCart, BiHeart } from "react-icons/bi";
+import { getProductDetails } from "@/actions/server/product";
 
 const ProductDetails = async ({ params }) => {
   const { slug } = await params;
-  const product = toys.find((toy) => toy.slug === slug);
+  const {data} = await getProductDetails(slug);
   const {
     bangla,
     image,
@@ -17,11 +17,13 @@ const ProductDetails = async ({ params }) => {
     description,
     info,
     qna,
-  } = product;
+  } = data;
 
   const discountedPrice = discount
     ? Math.round(price - (price * discount) / 100)
     : price;
+
+
 
   return (
     <div className="main-container py-10">
@@ -74,7 +76,7 @@ const ProductDetails = async ({ params }) => {
           <div className="mt-8">
             <h3 className="font-semibold mb-2">মূল বৈশিষ্ট্য</h3>
             <ul className="list-disc list-inside space-y-1 text-sm">
-              {info.map((item, idx) => (
+              {info?.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
@@ -91,7 +93,7 @@ const ProductDetails = async ({ params }) => {
         <h2 className="text-2xl font-semibold mb-4">সাধারণ প্রশ্ন</h2>
 
         <div className="space-y-3">
-          {qna.map((item, idx) => (
+          {qna?.map((item, idx) => (
             <div key={idx} className="collapse collapse-arrow bg-base-200">
               <input type="checkbox" />
               <div className="collapse-title font-medium">{item.question}</div>
