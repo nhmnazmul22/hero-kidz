@@ -29,3 +29,7 @@
     font-family: var(--font-onek), sans-serif;
   }
 }
+
+.main-container {
+  @apply max-w-[1400px] mx-auto px-5;
+}

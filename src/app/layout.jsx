@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         className={`${poppins.variable} ${mayaboti.variable} ${onekBangla.variable} font-onek antialiased`}
       >
         <Navbar />
-        <main className="container mx-auto min-h-[calc(100vh-287px)]">
+        <main className="main-container min-h-[calc(100vh-287px)]">
           {children}
         </main>
         <Footer />
