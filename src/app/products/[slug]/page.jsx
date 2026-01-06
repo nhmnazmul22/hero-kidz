@@ -3,9 +3,48 @@ import { FaStar } from "react-icons/fa";
 import { BiCart, BiHeart } from "react-icons/bi";
 import { getProductDetails } from "@/actions/server/product";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const { data: product } = await getProductDetails(slug);
+
+  return {
+    title: product.bangla,
+    description: product.description.slice(0, 160),
+
+    openGraph: {
+      type: "website",
+      locale: "bn_BD",
+      url: `https://herokidz.com/products/${params.slug}`,
+      title: product.bangla,
+      description: product.description.slice(0, 160),
+      images: [
+        {
+          url: product.image,
+          width: 1200,
+          height: 630,
+          alt: product.bangla,
+        },
+        {
+          url: "https://i.ibb.co.com/FLScJMP3/product-page.png",
+          width: 1200,
+          height: 630,
+          alt: "Hero Kidz Product Page Preview",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: product.bangla,
+      description: product.description.slice(0, 160),
+      images: [product.image],
+    },
+  };
+}
+
 const ProductDetails = async ({ params }) => {
   const { slug } = await params;
-  const {data} = await getProductDetails(slug);
+  const { data } = await getProductDetails(slug);
   const {
     bangla,
     image,
@@ -22,8 +61,6 @@ const ProductDetails = async ({ params }) => {
   const discountedPrice = discount
     ? Math.round(price - (price * discount) / 100)
     : price;
-
-
 
   return (
     <div className="main-container py-10">
