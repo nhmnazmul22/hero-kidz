@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "@/components/common/Logo";
 import NavLinks from "./NavLinks";
 import { FiShoppingCart } from "react-icons/fi";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -44,8 +45,12 @@ const Navbar = () => {
           <button className="btn btn-ghost">
             <FiShoppingCart size={20} />
           </button>
-          <button className="btn btn-primary btn-outline">লগইন</button>
-          <button className="btn btn-primary">রেজিস্টার</button>
+          <Link href="/login">
+            <button className="btn btn-primary btn-outline">লগইন</button>
+          </Link>
+          <Link href="/register">
+            <button className="btn btn-primary">রেজিস্টার</button>
+          </Link>
         </div>
       </div>
     </nav>

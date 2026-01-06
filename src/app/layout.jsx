@@ -79,7 +79,7 @@ export default function RootLayout({ children }) {
         className={`${poppins.variable} ${mayaboti.variable} ${onekBangla.variable} font-onek antialiased`}
       >
         <Navbar />
-        <main className="main-container min-h-[calc(100vh-287px)]">
+        <main className="main-container min-h-[calc(100vh-287px)] h-full">
           {children}
         </main>
         <Footer />
