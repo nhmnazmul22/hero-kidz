@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 export const poppins = Poppins({
   subsets: ["latin"],
@@ -71,7 +72,6 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -83,6 +83,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );
