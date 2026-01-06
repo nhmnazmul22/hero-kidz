@@ -3,7 +3,7 @@ import { FaSearch, FaHome } from "react-icons/fa";
 
 const NotFoundPage = () => {
   return (
-    <div className="flex items-center justify-center px-4">
+    <div className="flex items-center justify-center px-4 min-h-[calc(100vh-287px)]">
       <div className="text-center max-w-md">
         <FaSearch className="mx-auto text-6xl text-warning mb-4" />
 
