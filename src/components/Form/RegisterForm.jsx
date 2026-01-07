@@ -97,7 +97,11 @@ const RegisterForm = ({ handleRegister }) => {
       </div>
 
       <div className="form-control mt-6">
-        <button type="submit" className="btn btn-primary w-full">
+        <button
+          disabled={isSubmitting}
+          type="submit"
+          className="btn btn-primary w-full disabled:btn-disabled"
+        >
           {isSubmitting ? "রেজিস্টার হচ্ছে..." : "রেজিস্টার"}
         </button>
       </div>
