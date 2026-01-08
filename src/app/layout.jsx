@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import Footer from "@/components/layout/Footer/Footer";
 import { Toaster } from "react-hot-toast";
+import NextAuthProvider from "@/provider/NextAuthProvider";
 
 export const poppins = Poppins({
   subsets: ["latin"],
@@ -78,12 +79,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.variable} ${mayaboti.variable} ${onekBangla.variable} font-onek antialiased`}
       >
-        <Navbar />
-        <main className="main-container min-h-[calc(100vh-287px)] h-full">
-          {children}
-        </main>
-        <Footer />
-        <Toaster position="top-right" reverseOrder={false} />
+        <NextAuthProvider>
+          <Navbar />
+          <main className="main-container min-h-[calc(100vh-287px)] h-full">
+            {children}
+          </main>
+          <Footer />
+          <Toaster position="top-right" reverseOrder={false} />
+        </NextAuthProvider>
       </body>
     </html>
   );

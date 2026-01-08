@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
+import AddToCardBtn from "../Buttons/AddToCardBtn";
 
 const ProductCard = ({ product }) => {
   const { bangla, image, price, discount, ratings, sold, slug } = product;
@@ -46,9 +47,7 @@ const ProductCard = ({ product }) => {
               ডিটেলস দেখুন
             </button>
           </Link>
-          <button className="btn btn-primary btn-sm flex-1">
-            কার্টে যোগ করুন
-          </button>
+          <AddToCardBtn/>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaEnvelope, FaLock } from "react-icons/fa";
@@ -10,9 +11,9 @@ const LoginForm = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm();
-
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const handleLoginSubmit = async (data) => {
-    console.log(data);
     const result = await signIn("credentials", {
       redirect: false,
       email: data.email,
@@ -24,6 +25,7 @@ const LoginForm = () => {
     }
 
     toast.success("Login successful");
+    router.push(searchParams.get("callBackUrl"));
   };
 
   return (

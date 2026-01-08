@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { BiCart, BiHeart } from "react-icons/bi";
 import { getProductDetails } from "@/actions/server/product";
+import AddToCardBtn from "@/components/Buttons/AddToCardBtn";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -99,10 +100,10 @@ const ProductDetails = async ({ params }) => {
           </div>
 
           <div className="mt-6 flex max-sm:flex-col gap-3">
-            <button className="btn btn-primary sm:flex-1">
-              <BiCart size={16} />
-              কার্টে যোগ করুন
-            </button>
+            <AddToCardBtn
+              className="sm:flex-1"
+              callBackUrl={`/products/${slug}`}
+            />
             <button className="btn btn-outline btn-primary sm:flex-1">
               <BiHeart size={16} />
               ফেবারেট করুন

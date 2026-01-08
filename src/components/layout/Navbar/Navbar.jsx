@@ -3,8 +3,9 @@ import Logo from "@/components/common/Logo";
 import NavLinks from "./NavLinks";
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link";
+import AuthButtons from "./AuthButtons";
 
-const Navbar = () => {
+const Navbar = async () => {
   return (
     <nav className="bg-base-100 shadow-sm">
       <div className="navbar main-container">
@@ -45,12 +46,7 @@ const Navbar = () => {
           <button className="btn btn-ghost">
             <FiShoppingCart size={20} />
           </button>
-          <Link href="/login">
-            <button className="btn btn-primary btn-outline">লগইন</button>
-          </Link>
-          <Link href="/register">
-            <button className="btn btn-primary">রেজিস্টার</button>
-          </Link>
+          <AuthButtons />
         </div>
       </div>
     </nav>
