@@ -1,5 +1,6 @@
 import { loginUser } from "@/actions/server/auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleAuthProvider from "next-auth/providers/google";
 
 const authOptions = {
   providers: [
@@ -24,6 +25,10 @@ const authOptions = {
 
         return result.data;
       },
+    }),
+    GoogleAuthProvider({
+      clientId: process.env.GOGGLE_CLIENT_ID,
+      clientSecret: process.env.GOGGLE_CLIENT_SECRET,
     }),
   ],
 };

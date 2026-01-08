@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
               ডিটেলস দেখুন
             </button>
           </Link>
-          <AddToCardBtn/>
+          <AddToCardBtn className={`btn-sm`} />
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: "website",
       locale: "bn_BD",
-      url: `https://herokidz.com/products/${params.slug}`,
+      url: `https://herokidz.com/products/${slug}`,
       title: product.bangla,
       description: product.description.slice(0, 160),
       images: [
