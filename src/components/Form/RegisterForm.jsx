@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
@@ -11,14 +11,18 @@ const RegisterForm = ({ handleRegister }) => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm();
+  const searchParams = useSearchParams();
   const router = useRouter();
+
+  const callbackUrl = searchParams.get("callbackUrl") || "";
 
   const handleRegisterSubmit = async (data) => {
     const result = await handleRegister(data);
     if (result.success) {
       toast.success(result.message || "Registration successful");
       reset();
-      router.push("/login");
+
+      router.push(callbackUrl ? `/login?callBackUrl=${callbackUrl}` : "/login");
     } else {
       toast.error(result.message || "Registration failed");
     }

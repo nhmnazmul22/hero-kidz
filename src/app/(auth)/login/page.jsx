@@ -3,7 +3,12 @@ import LoginForm from "@/components/Form/LoginForm";
 import Link from "next/link";
 import React from "react";
 
-const LoginPage = () => {
+const LoginPage = async ({ searchParams }) => {
+  const params = await searchParams;
+
+  const registerLink = params?.callBackUrl
+    ? `/register?callbackUrl=${params?.callBackUrl}`
+    : "/register";
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="card w-full max-w-md bg-base-100 shadow-xl">
@@ -16,7 +21,7 @@ const LoginPage = () => {
           <GoogleAuthButton />
           <p className="text-center text-sm mt-4">
             নতুন ব্যবহারকারী?{" "}
-            <Link href="/register" className="link link-primary">
+            <Link href={registerLink} className="link link-primary">
               রেজিস্টার করুন
             </Link>
           </p>
