@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
 
-const CartSummary = ({ items }) => {
-  const subtotal = items.reduce((sum, item) => sum + item.totalPrice, 0);
+import useCart from "@/hooks/useCart";
+
+const CartSummary = () => {
+  const { cartItems } = useCart();
+
+  const subtotal = cartItems?.reduce((sum, item) => sum + item.totalPrice, 0);
 
   return (
-    <div className="card bg-base-100 shadow-md border border-base-200 h-fit">
+    <div className="card bg-base-100 shadow-md border border-base-200 h-fit sticky top-0">
       <div className="card-body">
         <h2 className="card-title mb-4">অর্ডার সামারি</h2>
 

@@ -1,28 +1,15 @@
-import CartHeader from "@/components/cart/CartHeader";
-import CartList from "@/components/cart/CartList";
-import CartSummary from "@/components/cart/CartSummary";
+import { getCarts } from "@/actions/server/cart";
+
 import React from "react";
+import CartClientPage from "./CartPage";
 
-const CartPage = () => {
-  const cartItems = [
-    {
-      _id: "696083d9548bb3f99baa9a22",
-      bnTitle: "সংখ্যা ও গণনা শেখার শিক্ষামূলক বোর্ড",
-      image: "https://i.ibb.co.com/p6Q0fchX/81a72-DDFc-KL-AC-SL1500.jpg",
-      quantity: 2,
-      price: 1125,
-      totalPrice: 2250,
-    },
-  ];
+const CartPage = async () => {
+  const result = await getCarts();
 
+  const cartItems = result.data || [];
   return (
     <div className="main-container py-10">
-      <CartHeader />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <CartList items={cartItems} />
-        <CartSummary items={cartItems} />
-      </div>
+      <CartClientPage initialItems={cartItems} />
     </div>
   );
 };
