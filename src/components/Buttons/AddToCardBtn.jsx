@@ -1,30 +1,52 @@
 "use client";
 
+import { handleCart } from "@/actions/server/cart";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { BiCart } from "react-icons/bi";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { BiCart, BiLoader } from "react-icons/bi";
 
-const AddToCardBtn = ({ className, callBackUrl = "" }) => {
+const AddToCardBtn = ({ className, callBackUrl = "", product }) => {
   const session = useSession();
   const router = useRouter();
   const pathName = usePathname();
+  const [isAddToCard, setIsAddToCard] = useState(false);
 
-  const handleAddToCart = async () => {
-    if (session.status !== "authenticated") {
-      router.push(`/login?callBackUrl=${callBackUrl || pathName}`);
+  const handleAddToCart = async (product) => {
+    try {
+      setIsAddToCard(true);
+      if (session.status !== "authenticated") {
+        router.push(`/login?callBackUrl=${callBackUrl || pathName}`);
+        return;
+      }
+
+      const result = await handleCart(product);
+      if (!result.success) {
+        toast.error(result.message || "Operation failed to add cart");
+        return;
+      }
+      toast.success(result.message || "Product added to cart");
       return;
+    } finally {
+      setIsAddToCard(false);
     }
-
-    console.log(" I am add to card");
   };
 
   return (
     <button
-      onClick={handleAddToCart}
-      className={`btn btn-primary ${className}`}
+      disabled={isAddToCard}
+      onClick={() => handleAddToCart(product)}
+      className={`btn btn-primary disabled:btn-disabled ${className} `}
     >
-      <BiCart size={16} />
-      কার্টে যোগ করুন
+      {isAddToCard ? (
+        <BiLoader size={16} className="animate-spin" />
+      ) : (
+        <>
+          <BiCart size={16} />
+          কার্টে যোগ করুন
+        </>
+      )}
     </button>
   );
 };
