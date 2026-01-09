@@ -1,5 +1,6 @@
 "use server";
 import { collections } from "@/config/dbConnect";
+import { ObjectId } from "mongodb";
 
 export const getProducts = async () => {
   try {
@@ -23,6 +24,23 @@ export const getProductDetails = async (slug) => {
   try {
     const productColl = await collections.PRODUCTS();
     const product = await productColl.findOne({ slug });
+    return {
+      success: true,
+      message: "Product details retrieved successful",
+      data: product,
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err?.message || "Product details retrieved failed",
+    };
+  }
+};
+
+export const getProductById = async (productId) => {
+  try {
+    const productColl = await collections.PRODUCTS();
+    const product = await productColl.findOne({ _id: new ObjectId(productId) });
     return {
       success: true,
       message: "Product details retrieved successful",
