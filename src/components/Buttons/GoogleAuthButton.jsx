@@ -8,7 +8,7 @@ const GoogleAuthButton = () => {
   const searchParam = useSearchParams();
   const handleGoogleLogin = async () => {
     const result = await signIn("google", {
-      callbackUrl: searchParam.get("callBackUrl"),
+      callbackUrl: searchParam.get("callBackUrl") || "/",
     });
     if (!result.ok) {
       return toast.error("Login failed, try again.");
