@@ -7,14 +7,9 @@ import toast from "react-hot-toast";
 const GoogleAuthButton = () => {
   const searchParam = useSearchParams();
   const handleGoogleLogin = async () => {
-    const result = await signIn("google", {
+    await signIn("google", {
       callbackUrl: searchParam.get("callBackUrl") || "/",
     });
-    if (!result.ok) {
-      return toast.error("Login failed, try again.");
-    } else {
-      return toast.success("Login successful");
-    }
   };
 
   return (

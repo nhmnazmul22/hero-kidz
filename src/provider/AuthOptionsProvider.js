@@ -1,4 +1,4 @@
-import { loginUser, registerUser } from "@/actions/server/auth";
+import { getUser, loginUser, registerUser } from "@/actions/server/auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleAuthProvider from "next-auth/providers/google";
 
@@ -56,12 +56,30 @@ const authOptions = {
     // async redirect({ url, baseUrl }) {
     //   return baseUrl
     // },
-    // async session({ session, user, token }) {
-    //   return session
-    // },
-    // async jwt({ token, user, account, profile, isNewUser }) {
-    //   return token
-    // }
+    async session({ session, user, token }) {
+      if (token) {
+        session.fullName = token?.fullName;
+        session.role = token?.role;
+      }
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        if (account?.provider === "google") {
+          const res = await getUser(user.email, account.provider);
+          console.log(res)
+          if (res.success && res.data) {
+            token.fullName = res.data?.fullName;
+            token.role = res.data?.role;
+          }
+        } else {
+          token.fullName = user?.fullName;
+          token.role = user?.role;
+        }
+      }
+
+      return token;
+    },
   },
 };
 

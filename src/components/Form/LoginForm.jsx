@@ -25,7 +25,7 @@ const LoginForm = () => {
     }
 
     toast.success("Login successful");
-    router.push(searchParams.get("callBackUrl"));
+    router.push(searchParams.get("callBackUrl") || "/");
   };
 
   return (

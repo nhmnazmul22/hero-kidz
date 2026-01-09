@@ -11,7 +11,10 @@ export const registerUser = async (userInfo) => {
     }
 
     const usersColl = await collections.USERS();
-    const existUser = await usersColl.findOne({ email: userInfo.email });
+    const existUser = await usersColl.findOne({
+      email: userInfo.email,
+      provider: userInfo.provider,
+    });
     if (existUser) {
       return {
         success: false,
@@ -60,7 +63,6 @@ export const loginUser = async (credential) => {
       };
     }
 
-    console.log(credential);
     const isPasswordMatch = await bcrypt.compare(
       credential.password,
       existUser.password
@@ -82,6 +84,34 @@ export const loginUser = async (credential) => {
     return {
       success: false,
       message: err?.message || "Login failed",
+    };
+  }
+};
+
+export const getUser = async (email, provider) => {
+  try {
+    const usersColl = await collections.USERS();
+    const existUser = await usersColl
+      .findOne({
+        email,
+        provider,
+      })
+      .project({ password: 0 });
+    if (!existUser) {
+      return {
+        success: false,
+        message: "User not found",
+      };
+    }
+    return {
+      success: true,
+      message: "User retrieved successful",
+      data: { ...existUser, _id: existUser._id.toString() },
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err?.message || "Registration failed",
     };
   }
 };

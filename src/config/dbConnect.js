@@ -17,8 +17,6 @@ export const connectDB = async () => {
   await client.connect();
   const db = client.db(process.env.DB_NAME);
 
-  console.log("MongoDB Connected");
-
   cachedClient = client;
   cachedDb = db;
   return db;
