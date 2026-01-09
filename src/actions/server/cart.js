@@ -145,3 +145,71 @@ export const removeCart = async (cartId) => {
     };
   }
 };
+
+export const updateCartQuantity = async (cartId, inc) => {
+  const { user } = (await getServerSession(authOptions)) || {};
+  if (!user) {
+    return {
+      success: false,
+      message: "Unauthorize",
+    };
+  }
+  try {
+    const cartsColl = await collections.CARTS();
+    const existCart = await cartsColl.findOne({
+      _id: new ObjectId(cartId),
+      email: user.email,
+    });
+
+    if (!existCart) {
+      return {
+        success: false,
+        message: "Cart not found",
+      };
+    }
+
+    if (existCart.quantity === 10 && inc) {
+      return {
+        success: false,
+        message: "Items quantity is limit reached",
+      };
+    }
+
+    if (existCart.quantity === 1 && !inc) {
+      return {
+        success: false,
+        message: "At least one quantity need in cart item",
+      };
+    }
+
+    const totalPrice = inc
+      ? existCart.totalPrice + existCart.price
+      : existCart.totalPrice - existCart.price;
+    const updatedDoc = {
+      $inc: {
+        quantity: inc ? 1 : -1,
+      },
+      $set: {
+        totalPrice,
+      },
+    };
+
+    const result = await cartsColl.updateOne(
+      {
+        _id: new ObjectId(cartId),
+      },
+      updatedDoc
+    );
+
+    return {
+      success: true,
+      message: "Cart quantity updated successful",
+      data: result,
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err?.message || "Cart quantity updated successful",
+    };
+  }
+};

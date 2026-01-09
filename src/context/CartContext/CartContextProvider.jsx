@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import CartContext from "./CartContext";
 import toast from "react-hot-toast";
-import { removeCart } from "@/actions/server/cart";
+import { removeCart, updateCartQuantity } from "@/actions/server/cart";
 
 const CartContextProvider = ({ children, initialItems }) => {
   const [cartItems, setCartItems] = useState(initialItems);
@@ -28,7 +28,57 @@ const CartContextProvider = ({ children, initialItems }) => {
     }
   };
 
-  const cartInfo = { cartItems, setCartItems, isRemoving, handleRemoveCart };
+  const increaseQty = async (id) => {
+    const prev = cartItems;
+
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item._id === id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+              totalPrice: item.totalPrice + item.price,
+            }
+          : item
+      )
+    );
+    const result = await updateCartQuantity(id, true);
+    if (!result.success) {
+      setCartItems(prev);
+      toast.error(result.message || "কার্ট আপডেট ব্যর্থ হয়েছে");
+    }
+  };
+
+  const decreaseQty = async (id) => {
+    const prev = cartItems;
+
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item._id === id
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+              totalPrice: item.totalPrice - item.price,
+            }
+          : item
+      )
+    );
+
+    const result = await updateCartQuantity(id, false);
+    if (!result.success) {
+      setCartItems(prev);
+      toast.error(result.message || "কার্ট আপডেট ব্যর্থ হয়েছে");
+    }
+  };
+
+  const cartInfo = {
+    cartItems,
+    setCartItems,
+    isRemoving,
+    handleRemoveCart,
+    increaseQty,
+    decreaseQty,
+  };
   return (
     <CartContext.Provider value={cartInfo}>{children}</CartContext.Provider>
   );
