@@ -43,9 +43,11 @@ const Navbar = async () => {
           </ul>
         </div>
         <div className="navbar-end gap-3">
-          <button className="btn btn-ghost">
-            <FiShoppingCart size={20} />
-          </button>
+          <Link href="/carts">
+            <button className="btn btn-ghost">
+              <FiShoppingCart size={20} />
+            </button>
+          </Link>
           <AuthButtons />
         </div>
       </div>

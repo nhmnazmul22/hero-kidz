@@ -103,6 +103,7 @@ const ProductDetails = async ({ params }) => {
             <AddToCardBtn
               className="sm:flex-1"
               callBackUrl={`/products/${slug}`}
+              product={{ ...data, _id: data._id.toString() }}
             />
             <button className="btn btn-outline btn-primary sm:flex-1">
               <BiHeart size={16} />
