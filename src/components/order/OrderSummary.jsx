@@ -1,8 +1,9 @@
 "use client";
 
 import useCart from "@/hooks/useCart";
+import Link from "next/link";
 
-const CartSummary = () => {
+const OrderSummary = ({ actionText, actionLink }) => {
   const { cartItems } = useCart();
 
   const subtotal = cartItems?.reduce((sum, item) => sum + item.totalPrice, 0);
@@ -33,10 +34,12 @@ const CartSummary = () => {
           <span className="text-primary">৳{subtotal}</span>
         </div>
 
-        <button className="btn btn-primary w-full mt-4">Checkout</button>
+        <Link href={actionLink}>
+          <button className="btn btn-primary w-full mt-4">{actionText}</button>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default CartSummary;
+export default OrderSummary;
