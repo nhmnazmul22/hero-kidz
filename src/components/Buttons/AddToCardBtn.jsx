@@ -7,13 +7,13 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { BiCart, BiLoader } from "react-icons/bi";
 
-const AddToCardBtn = ({ className, callBackUrl = "", product }) => {
+const AddToCardBtn = ({ className, callBackUrl = "", productId }) => {
   const session = useSession();
   const router = useRouter();
   const pathName = usePathname();
   const [isAddToCard, setIsAddToCard] = useState(false);
 
-  const handleAddToCart = async (product) => {
+  const handleAddToCart = async () => {
     try {
       setIsAddToCard(true);
       if (session.status !== "authenticated") {
@@ -21,7 +21,7 @@ const AddToCardBtn = ({ className, callBackUrl = "", product }) => {
         return;
       }
 
-      const result = await handleCart(product);
+      const result = await handleCart(productId);
       if (!result.success) {
         toast.error(result.message || "Operation failed to add cart");
         return;
@@ -36,7 +36,7 @@ const AddToCardBtn = ({ className, callBackUrl = "", product }) => {
   return (
     <button
       disabled={isAddToCard}
-      onClick={() => handleAddToCart(product)}
+      onClick={() => handleAddToCart()}
       className={`btn btn-primary disabled:btn-disabled ${className} `}
     >
       {isAddToCard ? (

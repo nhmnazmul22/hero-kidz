@@ -47,10 +47,7 @@ const ProductCard = ({ product }) => {
               ডিটেলস দেখুন
             </button>
           </Link>
-          <AddToCardBtn
-            className={`btn-sm`}
-            product={{ ...product, _id: product._id.toString() }}
-          />
+          <AddToCardBtn className={`btn-sm`} productId={product._id.toString()} />
         </div>
       </div>
     </div>
