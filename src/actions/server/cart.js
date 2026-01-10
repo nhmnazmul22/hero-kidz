@@ -28,7 +28,10 @@ export const handleCart = async (productId) => {
     const cartsColl = await collections.CARTS();
     const price = product.price - (product.price * product.discount) / 100;
 
-    const existCart = await cartsColl.findOne({ productId: product._id });
+    const existCart = await cartsColl.findOne({
+      productId: product._id,
+      email: user.email,
+    });
     if (existCart) {
       const newQty = existCart.quantity + 1;
       const newPrice = existCart.price * newQty;

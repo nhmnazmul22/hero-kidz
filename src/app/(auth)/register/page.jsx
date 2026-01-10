@@ -1,6 +1,7 @@
 import { registerUser } from "@/actions/server/auth";
 import RegisterForm from "@/components/Form/RegisterForm";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const RegisterPage = () => {
   const handleRegister = async (data) => {
@@ -17,7 +18,9 @@ const RegisterPage = () => {
           <p className="text-center text-sm text-base-content/70">
             নতুন অ্যাকাউন্ট তৈরি করুন
           </p>
-          <RegisterForm handleRegister={handleRegister} />
+          <Suspense fallback={null}>
+            <RegisterForm handleRegister={handleRegister} />
+          </Suspense>
           <p className="text-center text-sm mt-4">
             আগে থেকেই অ্যাকাউন্ট আছে?{" "}
             <Link href="/login" className="link link-primary">
