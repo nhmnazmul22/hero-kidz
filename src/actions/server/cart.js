@@ -209,7 +209,30 @@ export const updateCartQuantity = async (cartId, inc) => {
   } catch (err) {
     return {
       success: false,
-      message: err?.message || "Cart quantity updated successful",
+      message: err?.message || "Cart quantity updated failed",
+    };
+  }
+};
+
+export const clearCart = async () => {
+  const { user } = (await getServerSession(authOptions)) || {};
+  if (!user) {
+    return {
+      success: false,
+      message: "Unauthorize",
+    };
+  }
+  try {
+    const result = await cartsColl.deleteMany({ email: user.email });
+    return {
+      success: true,
+      message: "Cart cleared successful",
+      data: result,
+    };
+  } catch (err) {
+    return {
+      success: false,
+      message: err?.message || "Cart cleared failed",
     };
   }
 };

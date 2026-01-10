@@ -26,4 +26,5 @@ export const collections = {
   PRODUCTS: async () => (await connectDB()).collection("products"),
   USERS: async () => (await connectDB()).collection("users"),
   CARTS: async () => (await connectDB()).collection("carts"),
+  ORDERS: async () => (await connectDB()).collection("orders"),
 };
