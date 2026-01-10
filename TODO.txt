@@ -1,0 +1,15 @@
+Left Work:
+🔳 Create Order feature
+🔳 User Account features
+   🔳 Profile
+   🔳 address
+   🔳 order tracking
+   🔳 orders page
+   🔳 settings
+🔳 Admin account features
+   🔳 Profile
+   🔳 create product
+   🔳 product management
+   🔳 users management
+   🔳 settings
+
